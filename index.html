@@ -1,1 +1,72 @@
-Hello world
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CITNTL</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <style media="screen"></style>
+  </head>
+  <body>
+
+    <div id="navbar">
+      <div></div>
+      <a href="about.html">About</a>
+      <a href="https://github.com/citneuro">Github</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>
+      Welcome to the California Institute of Technology Neurotech Lab website. Professor Daniel Wagenaar and students
+      have developed several general-use hardware and software tools over the years, and we believe the community would
+      benefit from have open-sourcing them in-depth tutorials. Topics range from visual neuroscience tools to barcode generation 
+      and alignment for neuropixel + NIDAQ experimental rigs.
+    </p>
+
+    <h2><a href="https://github.com/citneuro/stimbarcoduino">stimbarcoduino</a></h2>
+    <p>
+      Code for sending unique barcodes to multiple data acquisition systems for later alignment. Barcodes always have exactly ten 
+      high and ten low signals, and the duration of the signals, as well as the interval between them, can be easily adjusted.
+      
+      Furthermore, it also allows for multiplexing stimulus identity signals into the barcode stream, specifically for optogenetics.
+
+      Additional tutorial on how to create an electrically secure "box" for securely housing the arduino running this code.
+    </p>
+
+    <h2><a href="https://github.com/citneuro/ephysio">openephysio</a></h2>
+    <p>
+      Input/output utilities specially designed for aligning barcodes (see above) sent in parallel to a
+      neuropixel PXI chassis and to a NI-DAQ system, even when the sampling rates of these systems are not the same
+      (even by an order of magnitude)
+    </p>
+
+    <h2><a href="https://github.com/citneuro/screenreader">screenreader</a></h2>
+    <p>
+      Design files and gerber files for printing a phototransistor circuit for fast encoding of high/low signals on a screen.
+      This device is particularly useful for precisely aligning visual presentations on a screen with physiological recordings (e.g., 
+      electrophysiological recordings)
+    </p>
+
+    <script>
+      // from: https://www.w3schools.com/howto/howto_js_navbar_sticky.asp
+      // When the user scrolls the page, execute myFunction
+      window.onscroll = function() {myFunction()};
+
+      // Get the navbar
+      var navbar = document.getElementById("navbar");
+
+      // Get the offset position of the navbar
+      var sticky = navbar.offsetTop;
+
+      // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+      function myFunction() {
+          if (window.pageYOffset >= sticky) {
+              navbar.classList.add("sticky")
+          } else {
+              navbar.classList.remove("sticky");
+          }
+      }
+    </script>
+  </body>
+</html>
