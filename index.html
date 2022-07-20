@@ -9,7 +9,7 @@
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <style media="screen"></style>
   </head>
-  <body>
+  <body style="left-margin:1000px;right-margin:500px;bottom-margin:100px;">
 
     <div id="navbar">
       <div></div>
@@ -17,6 +17,7 @@
       <a href="https://github.com/citneuro">Github</a>
       <a href="contact.html">Contact</a>
     </div>
+
     <p>
       Welcome to the California Institute of Technology Neurotech Lab website. Professor Daniel Wagenaar and students
       have developed several general-use hardware and software tools over the years, and we believe the community would
@@ -24,22 +25,46 @@
       and alignment for neuropixel + NIDAQ experimental rigs.
     </p>
 
+    <h2><a href="https://github.com/citneuro/magnetsearch">magnetsearch</a></h2>
+    <p>We are undertaking an crowdsourced search for neurons that respond to magnetic fields; a neural correlate of "magnetosensation". 
+    We are actively seeking collaborators to help us search! If you do ephys, calcium imaging, or another physiological recording technique,
+    we would love your help! We will send you the equipment, and you just do your experiments as usual. At the end of your recording session, 
+    flip our device on, record for another minute or two, and send us the data!</p>
+    
+    <p>To participate, please fill out our 
+    <a href src="https://docs.google.com/forms/d/e/1FAIpQLSfntDIwzxcYllrXk804CxTl-9dhOhCQjkY-I_gg12nW6pa4HQ/viewform">Participation Form</a> and take a look at our 
+    <a href src="https://github.com/citneuro/magnetsearch/raw/main/MagnetSearch.pdf">Collaboration Plan</a>. We look forward to hearing from you!</p>
+    
     <h2><a href="https://github.com/citneuro/stimbarcoduino">stimbarcoduino</a></h2>
-    <p>
-      Code for sending unique barcodes to multiple data acquisition systems for later alignment. Barcodes always have exactly ten 
-      high and ten low signals, and the duration of the signals, as well as the interval between them, can be easily adjusted.
-      
-      Furthermore, it also allows for multiplexing stimulus identity signals into the barcode stream, specifically for optogenetics.
+    <p>Code for sending unique barcodes to multiple data acquisition systems for later alignment. Barcodes always have exactly ten 
+    high and ten low signals, and the duration of the signals, as well as the interval between them, can be easily adjusted.</p>
+    
+    <p>Furthermore, it also allows for multiplexing stimulus identity signals into the barcode stream, specifically for optogenetics.</p>
 
-      Additional tutorial on how to create an electrically secure "box" for securely housing the arduino running this code.
-    </p>
-
+    
     <h2><a href="https://github.com/citneuro/ephysio">openephysio</a></h2>
     <p>
       Input/output utilities specially designed for aligning barcodes (see above) sent in parallel to a
       neuropixel PXI chassis and to a NI-DAQ system, even when the sampling rates of these systems are not the same
-      (even by an order of magnitude)
+      (even by an order of magnitude).
     </p>
+    <pre style="text-align: left;"><code>
+    # Create loader object
+    ldr = openEphysIO.Loader(path, cntlbarcodes=True)
+      
+    # Convert event times
+    t_up = ldr.shifttime(times, 
+        deststream="Neuropix-PXI-102.0",
+        sourcestream="NI-DAQmx-100.0",
+        sourcebarcode="A2")
+    </code></pre>
+    
+
+    <p>
+      Additionally, ephysio includes a nifty spike browser! Written with pyQt, it is snappy, full-featured, and aesthetically pleasing.
+      We hope the community will benefit from this tool.
+    </p>
+    <img src="images/vizio_demo.gif" width="40%">
 
     <h2><a href="https://github.com/citneuro/screenreader">screenreader</a></h2>
     <p>
@@ -47,6 +72,22 @@
       This device is particularly useful for precisely aligning visual presentations on a screen with physiological recordings (e.g., 
       electrophysiological recordings)
     </p>
+    <img src="images/screenreader_circuit.png" width="30%">
+
+    <h2><a href="https://github.com/citneuro/python-daw">python-daw</a></h2>
+    <p>
+      A series of python utilities, including a handy schmitt trigger for cleanly and efficiently thresholding often noisy signal data!
+    </p>
+
+    <pre style="text-align: left;">
+    <code>
+    # Thresholding a signal using the Schmitt trigger function. 
+    up, down = schmitt(
+        np.array(signal_trace, dtype="float64"),
+        thr_on=12_000, thr_off=2_500, starttype=0, endtype=0
+    )
+    </code>
+  </pre>
 
     <script>
       // from: https://www.w3schools.com/howto/howto_js_navbar_sticky.asp
